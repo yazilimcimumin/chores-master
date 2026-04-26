@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chores Master - Ev İşleri Ustası</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Menu Screen -->
+        <div id="menu-screen" class="screen active">
+            <div class="logo-container">
+                <img src="logo.png" alt="CeZeC Dev" class="logo">
+            </div>
+            <h1 class="title">CHORES MASTER</h1>
+            <p class="subtitle">Ev İşleri Kelime Oyunu</p>
+            
+            <div class="menu-buttons">
+                <button class="game-mode-btn quiz-btn" onclick="startGame('quiz')">
+                    <span class="btn-title">KİM MİLYONER OLMAK İSTER</span>
+                    <span class="btn-desc">Çoktan seçmeli sorular - Süresiz</span>
+                </button>
+                
+                <button class="game-mode-btn speed-btn" onclick="startGame('speed')">
+                    <span class="btn-title">HIZLI YANITLA</span>
+                    <span class="btn-desc">30 saniyede kaç kelime bilirsin? - Süreli</span>
+                </button>
+                
+                <button class="game-mode-btn match-btn" onclick="startGame('match')">
+                    <span class="btn-title">KELİME EŞLEŞTİRME</span>
+                    <span class="btn-desc">İngilizce-Türkçe eşleştir - Süresiz</span>
+                </button>
+                
+                <button class="game-mode-btn timed-btn" onclick="startGame('timed')">
+                    <span class="btn-title">ZAMANA KARŞI</span>
+                    <span class="btn-desc">60 saniyede tüm kelimeleri bul - Süreli</span>
+                </button>
+            </div>
+            
+            <div class="credits">
+                <p class="dev-name">CeZeC Dev</p>
+                <p class="programmer">Programmer: Cesur</p>
+            </div>
+        </div>
+
+        <!-- Quiz Game Screen -->
+        <div id="quiz-screen" class="screen">
+            <button class="back-btn" onclick="backToMenu()">Ana Menüye Dön</button>
+            <h2 class="game-title">KİM MİLYONER OLMAK İSTER?</h2>
+            <div class="game-info">
+                <span id="quiz-question-num">Soru 1/15</span>
+                <span id="quiz-score">Kazanılan: ₺0</span>
+                <span id="quiz-prize">Ödül: ₺100</span>
+            </div>
+            <div id="quiz-question" class="question-box"></div>
+            <div id="quiz-options" class="options-container"></div>
+            <div id="quiz-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Speed Game Screen -->
+        <div id="speed-screen" class="screen">
+            <button class="back-btn" onclick="backToMenu()">Ana Menüye Dön</button>
+            <h2 class="game-title">HIZLI YANITLA</h2>
+            <div id="speed-timer" class="timer">30s</div>
+            <div class="game-info">
+                <span id="speed-score">Puan: 0</span>
+                <span id="speed-answered">Cevaplanan: 0</span>
+            </div>
+            <div id="speed-question" class="question-box"></div>
+            <input type="text" id="speed-input" class="text-input" placeholder="Cevabı yazın...">
+            <button id="speed-submit" class="submit-btn" onclick="checkSpeedAnswer()">GÖNDER</button>
+            <div id="speed-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Match Game Screen -->
+        <div id="match-screen" class="screen">
+            <button class="back-btn" onclick="backToMenu()">Ana Menüye Dön</button>
+            <h2 class="game-title">KELİME EŞLEŞTİRME</h2>
+            <div class="game-info">
+                <span id="match-score">Puan: 0</span>
+            </div>
+            <p class="instruction">İngilizce ve Türkçe kelimeleri eşleştirin</p>
+            <div class="match-container">
+                <div id="english-words" class="word-column"></div>
+                <div id="turkish-words" class="word-column"></div>
+            </div>
+            <div id="match-feedback" class="feedback"></div>
+        </div>
+
+        <!-- Timed Game Screen -->
+        <div id="timed-screen" class="screen">
+            <button class="back-btn" onclick="backToMenu()">Ana Menüye Dön</button>
+            <h2 class="game-title">ZAMANA KARŞI</h2>
+            <div id="timed-timer" class="timer">60s</div>
+            <div class="game-info">
+                <span id="timed-progress">İlerleme: 0/10</span>
+                <span id="timed-score">Puan: 0</span>
+            </div>
+            <div id="timed-question" class="question-box"></div>
+            <div id="timed-options" class="options-container"></div>
+            <div id="timed-feedback" class="feedback"></div>
+        </div>
+    </div>
+
+    <audio id="correct-sound" src="sounds/correct.mp3"></audio>
+    <audio id="wrong-sound" src="sounds/wrong.mp3"></audio>
+    <audio id="thinking-sound" src="sounds/thinking.mp3"></audio>
+
+    <script src="words.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
